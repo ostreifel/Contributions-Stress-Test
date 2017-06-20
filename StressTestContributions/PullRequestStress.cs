@@ -13,9 +13,10 @@ namespace StressTestContributions
         {
             var criteria = new GitQueryCommitsCriteria
             {
+                
             };
-            var commits = client.GetCommitsAsync(Config.PrepopulatedGitRepository, criteria, 0, 10000).Result;
-            Console.WriteLine($"Retreived ${commits.Count} commits");
+            var commits = client.GetCommitsAsync(Config.PrepopulatedRepoProject, Config.PrepopulatedGitRepository, criteria, 0, 10000).Result;
+            Console.WriteLine($"Retreived {commits.Count} commits");
         }
     }
 }
