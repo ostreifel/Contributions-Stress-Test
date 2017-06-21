@@ -15,7 +15,8 @@ namespace StressTestContributions
             var gitClient = connection.GetClient<GitHttpClient>();
             //PullRequestStress.CreatePullRequests(gitClient);
             var witClient = connection.GetClient<WorkItemTrackingHttpClient>();
-            WorkItemStress.CreateWorkItems(witClient);
+            //WorkItemStress.CreateWorkItems(witClient);
+            GitRepoStress.CreateRepositories(gitClient);
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
