@@ -194,6 +194,7 @@
     <Compile Include="PullRequestStress.cs" />
     <Compile Include="StressTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkItemStress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

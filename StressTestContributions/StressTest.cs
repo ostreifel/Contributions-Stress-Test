@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.TeamFoundation.SourceControl.WebApi;
+using Microsoft.TeamFoundation.WorkItemTracking.WebApi;
 using Microsoft.VisualStudio.Services.Client;
 using Microsoft.VisualStudio.Services.WebApi;
 
@@ -12,7 +13,9 @@ namespace StressTestContributions
         {
             var connection = new VssConnection(new Uri(Config.CollectionUri), new VssClientCredentials());
             var gitClient = connection.GetClient<GitHttpClient>();
-            PullRequestStress.CreatePullRequests(gitClient);
+            //PullRequestStress.CreatePullRequests(gitClient);
+            var witClient = connection.GetClient<WorkItemTrackingHttpClient>();
+            WorkItemStress.CreateWorkItems(witClient);
             Console.WriteLine("Press any key to continue");
             Console.ReadKey();
         }
