@@ -12,7 +12,7 @@ namespace StressTestContributions
     {
         internal static void CreateWorkItems(WorkItemTrackingHttpClient witClient)
         {
-            for (var i = 0; i < 10000;)
+            for (var i = 0; i < 50000;)
             {
                 var createWis = new List<Task<WorkItem>>();
                 for (var j = 0; j < 100; j++, i++)
@@ -26,24 +26,28 @@ namespace StressTestContributions
                         }
                     }, Config.PrepopulatedRepositoryProject, "Bug"));
                 }
-                var closeWis = new List<Task<WorkItem>>();
                 foreach (var wiTask in createWis)
-                {
-                    var workItem = wiTask.Result;
-                    closeWis.Add(witClient.UpdateWorkItemAsync(new JsonPatchDocument {
-                        new JsonPatchOperation {
-                            From = "value",
-                            Path = "/fields/System.State",
-                            Operation = Operation.Add,
-                            Value = "Closed"
-                        }
-                    }, workItem.Id.Value));
-                }
-                foreach (var wiTask in closeWis)
                 {
                     var closed = wiTask.Result;
                 }
-                Console.WriteLine($"Closed wi {i}/10000 workitems");
+                //var closeWis = new List<Task<WorkItem>>();
+                //foreach (var wiTask in createWis)
+                //{
+                //    var workItem = wiTask.Result;
+                //    closeWis.Add(witClient.UpdateWorkItemAsync(new JsonPatchDocument {
+                //        new JsonPatchOperation {
+                //            From = "value",
+                //            Path = "/fields/System.State",
+                //            Operation = Operation.Add,
+                //            Value = "Closed"
+                //        }
+                //    }, workItem.Id.Value));
+                //}
+                //foreach (var wiTask in closeWis)
+                //{
+                //    var closed = wiTask.Result;
+                //}
+                Console.WriteLine($"Created wi {i} workitems");
             }
         }
     }
